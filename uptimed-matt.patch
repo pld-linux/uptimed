@@ -1,0 +1,20 @@
+diff -ur uptimed-0.1.5/Makefile uptimed-0.1.5.matt/Makefile
+--- uptimed-0.1.5/Makefile	Thu Mar 30 06:23:07 2000
++++ uptimed-0.1.5.matt/Makefile	Thu Mar 30 09:32:51 2000
+@@ -59,11 +59,12 @@
+ 
+ install: 
+ 	strip $(TARGET)
+-	install -d /var/spool/uptimed/
+-	install -m 755 uptimed /usr/local/bin
+-	install -m 755 uprecords /usr/local/bin
++	install -d ${RPM_BUILD_ROOT}/var/spool/uptimed/
++	install -m 755 uptimed ${RPM_BUILD_ROOT}/usr/local/bin
++	install -m 755 uprecords ${RPM_BUILD_ROOT}/usr/local/bin
+ 	@ echo
+-	@sh -c 'if [ -e "/etc/uptimed.conf" ]; then echo "Found existing configuration file /etc/uptimed.conf"; echo "Installing template as /etc/uptimed.conf.dist"; install -m 644 uptimed.conf /etc/uptimed.conf.dist; else echo "Installing configuration file /etc/uptimed.conf"; install -m 644 uptimed.conf /etc; fi'
++	@ echo "Installing configuration file /etc/uptimed.conf"
++	install -m 644 uptimed.conf ${RPM_BUILD_ROOT}/etc
+ 	@ echo
+ 	@ echo "If you are upgrading from an older version, read INSTALL.upgrade"
+ 	@ echo "If you want to use the output of uprecords on your website, read INSTALL.cgi"
