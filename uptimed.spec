@@ -1,7 +1,8 @@
-Summary:	Uptime record daemon that keeps track of the highest uptimes the system has ever had
+Summary:	Uptime record daemon - keeps track of the highest system uptimes
+Summary(pl):	Demon ¶ledz±cy najwiêksze uptime serwera
 Name:		uptimed
 Version:	0.1.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -16,6 +17,13 @@ uptimes the system ever had. Instead of using a pid-file to keep
 sessions apart from eachother it uses the boottime from /proc/stat.
 Uptimed comes with a console front-end to parse the records, which can
 also easily be used to show your records on your Web page.
+
+%description -l pl
+Uptime to demon zapisuj±cy rekordy uptime, ¶ledz±cy najwiêksze uptime
+jakie mia³ system. Zamiast u¿ywaæ pliku pid do oddzielania sesji,
+u¿ywa boottime z /proc/stat. Uptimed przychodzi z konsolowym
+frontendem do parsowania rekordów, którego mo¿na ³atwo u¿yæ do
+pokazywania rekordów na stronie WWW.
 
 %prep
 %setup -q
