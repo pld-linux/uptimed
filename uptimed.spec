@@ -64,7 +64,7 @@ if ! grep -q uptimed /etc/rc.d/rc.local ; then
 fi
 if ! grep -q uptimed /etc/rc.d/rc.sysinit ; then
 	echo "echo \"Creating unique uptime daemon bootid...\"" >> /etc/rc.d/rc.sysinit
-	echo "/usr/sbin/uptimed -boot" >> /etc/rc.d/rc.sysinit
+	echo "/usr/sbin/uptimed -b" >> /etc/rc.d/rc.sysinit
 fi
 
 %postun
@@ -76,7 +76,7 @@ echo "echo \"Starting uptime daemon...\""
 echo "/usr/sbin/uptimed"
 echo "-- /etc/rc.d/rc.sysinit --"
 echo "echo \"Creating unique uptime daemon bootid...\""
-echo "/usr/sbin/uptimed -boot"
+echo "/usr/sbin/uptimed -b"
 
 %files
 %defattr(644,root,root,755)
