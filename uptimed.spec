@@ -1,13 +1,18 @@
-# TODO: find other way to start than messing with rc.sysinit and rc.local
+#
+# TODO:
+# - find other way to start than messing with rc.sysinit and rc.local
+# - add CGI stuff
+#
 Summary:	Uptime record daemon - keeps track of the highest system uptimes
 Summary(pl):	Demon ¶ledz±cy najwiêksze uptime serwera
 Name:		uptimed
-Version:	0.1.6
-Release:	2
+Version:	0.3.0
+Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	http://capsi.cx/src/uptimed/%{name}-%{version}.tar.bz2
-URL:		http://capsi.cx/code-uptimed.html
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+URL:		http://unixcode.org/uptimed/
+Patch0:		%{name}-DESTDIR.patch
 Requires(post):	grep
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -19,7 +24,7 @@ Uptimed comes with a console front-end to parse the records, which can
 also easily be used to show your records on your Web page.
 
 %description -l pl
-Uptime to demon zapisuj±cy rekordy uptime, ¶ledz±cy najwiêksze uptime
+Uptimed to demon zapisuj±cy rekordy uptime, ¶ledz±cy najwiêksze uptime
 jakie mia³ system. Zamiast u¿ywaæ pliku pid do oddzielania sesji,
 u¿ywa boottime z /proc/stat. Uptimed przychodzi z konsolowym
 frontendem do parsowania rekordów, którego mo¿na ³atwo u¿yæ do
@@ -27,20 +32,23 @@ pokazywania rekordów na stronie WWW.
 
 %prep
 %setup -q
+%patch0
 
 %build
-%{__make} linux
+%{__aclocal}
+%{__autoconf}
+%{__automake}
+%configure
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d ${RPM_BUILD_ROOT}{%{_bindir},%{_sbindir},%{_sysconfdir},%{_mandir}/man{1,8},/var/spool/uptimed}
 
-install uptimed.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
-install uptimed ${RPM_BUILD_ROOT}%{_sbindir}
-install uprecords ${RPM_BUILD_ROOT}%{_bindir}
-install uptimed.8 ${RPM_BUILD_ROOT}%{_mandir}/man8
-install uprecords.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
+%{__mv} $RPM_BUILD_ROOT%{_sysconfdir}/uptimed.conf{-dist,}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -68,9 +76,11 @@ echo "/usr/sbin/uptimed -boot"
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHOR BUGS CREDITS ChangeLog TODO README*
+%doc AUTHORS CREDITS ChangeLog NEWS README* TODO
 %attr(755,root,root) %{_sbindir}/uptimed
 %attr(755,root,root) %{_bindir}/uprecords
+%attr(755,root,root) %{_libdir}/*.so*
+%{_libdir}/*a
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/uptimed.conf
 %{_mandir}/man*/*
 %dir /var/spool/uptimed
