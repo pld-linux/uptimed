@@ -15,6 +15,7 @@ URL:		http://unixcode.org/uptimed/
 Patch0:		%{name}-DESTDIR.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libtool
 Requires(post):	grep
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
