@@ -1,3 +1,4 @@
+# TODO: find other way to start than messing with rc.sysinit and rc.local
 Summary:	Uptime record daemon - keeps track of the highest system uptimes
 Summary(pl):	Demon ¶ledz±cy najwiêksze uptime serwera
 Name:		uptimed
@@ -7,6 +8,7 @@ License:	GPL
 Group:		Applications/System
 Source0:	http://capsi.cx/src/uptimed/%{name}-%{version}.tar.bz2
 URL:		http://capsi.cx/code-uptimed.html
+Requires(post):	grep
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,10 +46,14 @@ install uprecords.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
 rm -rf $RPM_BUILD_ROOT
 
 %post
-echo "echo \"Starting uptime daemon...\"" >> /etc/rc.d/rc.local
-echo "/usr/sbin/uptimed" >> /etc/rc.d/rc.local
-echo "echo \"Creating unique uptime daemon bootid...\"" >> /etc/rc.d/rc.sysinit
-echo "/usr/sbin/uptimed -boot" >> /etc/rc.d/rc.sysinit
+if ! grep -q uptimed /etc/rc.d/rc.local ; then
+	echo "echo \"Starting uptime daemon...\"" >> /etc/rc.d/rc.local
+	echo "/usr/sbin/uptimed" >> /etc/rc.d/rc.local
+fi
+if ! grep -q uptimed /etc/rc.d/rc.sysinit ; then
+	echo "echo \"Creating unique uptime daemon bootid...\"" >> /etc/rc.d/rc.sysinit
+	echo "/usr/sbin/uptimed -boot" >> /etc/rc.d/rc.sysinit
+fi
 
 %postun
 echo "Please edit /etc/rc.d/rc.local and /etc/rc.d/rc.sysinit and take out the following lines"
