@@ -13,6 +13,8 @@ Group:		Applications/System
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://unixcode.org/uptimed/
 Patch0:		%{name}-DESTDIR.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
 Requires(post):	grep
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
