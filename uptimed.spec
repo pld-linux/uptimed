@@ -7,8 +7,8 @@ Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 URL:		http://capsi.cx/code-uptimed.html
 Source0:	http://capsi.cx/src/uptimed/%{name}-%{version}.tar.bz2
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Patch0:		uptimed-matt.patch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Uptimed is an uptime record daemon keeping track of the highest
@@ -18,24 +18,22 @@ Uptimed comes with a console front-end to parse the records, which can
 also easily be used to show your records on your Web page.
 
 %prep
-rm -fr $RPM_BUILD_ROOT
-rm -rf $RPM_BUILD_DIR/%{name}-%{version}
-
 %setup -q
 %patch0 -p1
 
 %build
 make linux
 
-%clean
-rm -fr $RPM_BUILD_ROOT
-rm -rf $RPM_BUILD_DIR/%{name}-%{version}
-
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d ${RPM_BUILD_ROOT}%{_prefix}/local/bin
-install -d ${RPM_BUILD_ROOT}%{_sysconfdir}
+install -d ${RPM_BUILD_ROOT}{%{_bindir},%{_sysconfdir}}
+
 make install
+
+gzip -9fn AUTHOR BUGS CREDITS ChangeLog TODO README*
+
+%clean
+rm -fr $RPM_BUILD_ROOT
 
 %post
 echo "echo \"Starting uptime daemon...\"" >> /etc/rc.d/rc.local
@@ -56,11 +54,11 @@ echo "/usr/local/bin/uptimed -boot"
 
 %files
 %defattr(644,root,root,755)
-%{_prefix}/local/bin/uptimed
-%{_prefix}/local/bin/uprecords
+%doc {AUTHOR,BUGS,CREDITS,ChangeLog,TODO}.gz
+%doc README*.gz
+
+%attr(755,root,root) %{_bindir}/uptimed
+%attr(755,root,root) %{_bindir}/uprecords
 
 %dir /var/spool/uptimed
-%config %{_sysconfdir}/uptimed.conf
-%doc AUTHOR BUGS CREDITS ChangeLog TODO
-%doc INSTALL*
-%doc README*
+%config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/uptimed.conf
