@@ -8,7 +8,6 @@ Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 URL:		http://capsi.cx/code-uptimed.html
 Source0:	http://capsi.cx/src/uptimed/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-matt.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -20,7 +19,6 @@ also easily be used to show your records on your Web page.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
 %{__make} linux
@@ -59,7 +57,7 @@ echo "/usr/sbin/uptimed -boot"
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHOR BUGS CREDITS ChangeLog TODO README*
+%doc AUTHOR.gz BUGS.gz CREDITS.gz ChangeLog.gz TODO.gz README*
 
 %attr(755,root,root) %{_sbindir}/uptimed
 %attr(755,root,root) %{_bindir}/uprecords
