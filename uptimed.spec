@@ -37,6 +37,7 @@ pokazywania rekordów na stronie WWW.
 %patch0
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
