@@ -11,6 +11,7 @@ Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5: eab6d75b16bac804b89eebf63ee659f8
 URL:		http://unixcode.org/uptimed/
 Patch0:		%{name}-DESTDIR.patch
 BuildRequires:	autoconf
