@@ -5,8 +5,6 @@ Version:	0.1.6
 Release:	2
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	http://capsi.cx/src/uptimed/%{name}-%{version}.tar.bz2
 URL:		http://capsi.cx/code-uptimed.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
