@@ -7,7 +7,7 @@ Summary:	Uptime record daemon - keeps track of the highest system uptimes
 Summary(pl):	Demon ¶ledz±cy najwiêksze uptime serwera
 Name:		uptimed
 Version:	0.3.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
