@@ -6,8 +6,8 @@ License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
-URL:		http://capsi.cx/code-uptimed.html
 Source0:	http://capsi.cx/src/uptimed/%{name}-%{version}.tar.bz2
+URL:		http://capsi.cx/code-uptimed.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,12 +57,9 @@ echo "/usr/sbin/uptimed -boot"
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHOR.gz BUGS.gz CREDITS.gz ChangeLog.gz TODO.gz README*
-
+%doc *.gz
 %attr(755,root,root) %{_sbindir}/uptimed
 %attr(755,root,root) %{_bindir}/uprecords
-
-%{_mandir}/man*/*
-
-%dir /var/spool/uptimed
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/uptimed.conf
+%{_mandir}/man*/*
+%dir /var/spool/uptimed
