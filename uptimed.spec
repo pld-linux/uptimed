@@ -39,7 +39,6 @@ install uprecords ${RPM_BUILD_ROOT}%{_bindir}
 install uptimed.8 ${RPM_BUILD_ROOT}%{_mandir}/man8
 install uprecords.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
 
-gzip -9nf AUTHOR BUGS CREDITS ChangeLog TODO README*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,7 +62,7 @@ echo "/usr/sbin/uptimed -boot"
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHOR BUGS CREDITS ChangeLog TODO README*
 %attr(755,root,root) %{_sbindir}/uptimed
 %attr(755,root,root) %{_bindir}/uprecords
 %config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/uptimed.conf
