@@ -40,7 +40,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 echo "echo \"Starting uptime daemon...\"" >> /etc/rc.d/rc.local
-echo "/usr/bin/uptimed" >> /etc/rc.d/rc.local
+echo "/usr/sbin/uptimed" >> /etc/rc.d/rc.local
 echo "echo \"Creating unique uptime daemon bootid...\"" >> /etc/rc.d/rc.sysinit
 echo "/usr/sbin/uptimed -boot" >> /etc/rc.d/rc.sysinit
 
