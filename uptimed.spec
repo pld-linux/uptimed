@@ -10,7 +10,7 @@ Version:	0.3.3
 Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	http://unixcode.org/downloads/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://unixcode.org/downloads/uptimed/%{name}-%{version}.tar.bz2
 # Source0-md5:	ea9aeab03e75661986abe682fd209f3d
 URL:		http://unixcode.org/uptimed/
 Patch0:		%{name}-DESTDIR.patch
@@ -86,6 +86,6 @@ echo "/usr/sbin/uptimed -b"
 %attr(755,root,root) %{_bindir}/uprecords
 %attr(755,root,root) %{_libdir}/*.so*
 %{_libdir}/*a
-%config(noreplace) %verify(not size md5 mtime) %{_sysconfdir}/uptimed.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/uptimed.conf
 %{_mandir}/man*/*
 %dir /var/spool/uptimed
