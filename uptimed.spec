@@ -4,7 +4,7 @@
 # - add CGI stuff
 #
 Summary:	Uptime record daemon - keeps track of the highest system uptimes
-Summary(pl.UTF-8):   Demon śledzący największe uptime serwera
+Summary(pl.UTF-8):	Demon śledzący największe uptime serwera
 Name:		uptimed
 Version:	0.3.9
 Release:	1
