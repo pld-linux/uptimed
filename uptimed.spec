@@ -1,17 +1,18 @@
 #
 # TODO:
 # - find other way to start than messing with rc.sysinit and rc.local
+#	new one uses rc.script 
 # - add CGI stuff
 #
 Summary:	Uptime record daemon - keeps track of the highest system uptimes
 Summary(pl.UTF-8):	Demon śledzący największe uptime serwera
 Name:		uptimed
-Version:	0.3.9
-Release:	1
+Version:	0.3.12
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	http://podgorny.cz/uptimed/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	f1aa5b40c021fc839dde0381366027aa
+# Source0-md5:	c523d6434b672107ea00559bb38eb050
 URL:		http://podgorny.cz/moin/Uptimed
 Patch0:		%{name}-DESTDIR.patch
 BuildRequires:	autoconf
