@@ -1,8 +1,0 @@
---- Makefile.am	Fri Feb 14 16:31:26 2003
-+++ Makefile.am.blah	Fri Feb 14 16:31:18 2003
-@@ -7,4 +7,4 @@
- 	sample-cgi/uprecords.footer uptimed.lsm uptimed.spec
- 
- install-data-local:
--	$(INSTALL) -d /var/spool/uptimed
-+	$(INSTALL) -d $(DESTDIR)/var/spool/uptimed
