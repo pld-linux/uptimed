@@ -32,7 +32,7 @@ Uptimed to demon zapisujący rekordy uptime, śledzący największe uptime
 jakie miał system. Zamiast używać pliku pid do oddzielania sesji,
 używa boottime z /proc/stat. Uptimed przychodzi z konsolowym
 frontendem do parsowania rekordów, którego można łatwo użyć do
-wyświetlania rekordów na stronie WWW.
+prezentacji rekordów na stronie WWW.
 
 %prep
 %setup -q
