@@ -7,12 +7,12 @@
 Summary:	Uptime record daemon - keeps track of the highest system uptimes
 Summary(pl.UTF-8):	Demon śledzący największe uptime serwera
 Name:		uptimed
-Version:	0.3.13
+Version:	0.3.16
 Release:	0.1
 License:	GPL v2+
 Group:		Applications/System
 Source0:	http://podgorny.cz/uptimed/releases/%{name}-%{version}.tar.bz2
-# Source0-md5:	3b5d4a4b53a08fe0ae5efd30ae93e59e
+# Source0-md5:	f87ec2cc39039239004afa542cf99c59
 URL:		http://podgorny.cz/moin/Uptimed
 BuildRequires:	autoconf
 BuildRequires:	automake
