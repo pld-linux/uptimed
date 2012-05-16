@@ -34,7 +34,9 @@ stop() {
 		return
 	fi
 
-	# nothing needed to stop it
+	msg_stopping "uptimed"
+	killproc uptimed
+
 	rm -f /var/lock/subsys/uptimed
 }
 
