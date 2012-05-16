@@ -1,0 +1,87 @@
+#!/bin/sh
+#
+# uptimed	Uptimed subsystem starting and stopping.
+#
+# chkconfig:	345 50 83
+#
+# description:	Uptimed deamon
+#
+# $Id$
+
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+[ -f /etc/sysconfig/uptimed ] && . /etc/sysconfig/uptimed
+
+start() {
+	# Check if the service is already running?
+	if [ -f /var/lock/subsys/uptimed ]; then
+		msg_already_running uptimed
+		return
+	fi
+
+	msg_starting "uptimed"
+	/usr/sbin/uptimed -b
+	daemon /usr/sbin/uptimed
+	RETVAL=$?
+	touch /var/lock/subsys/uptimed
+}
+
+stop() {
+	if [ ! -f /var/lock/subsys/uptimed ]; then
+		msg_not_running uptimed
+		return
+	fi
+
+	# nothing needed to stop it
+	rm -f /var/lock/subsys/uptimed
+}
+
+condrestart() {
+	if [ ! -f /var/lock/subsys/uptimed ]; then
+		msg_not_running uptimed
+		RETVAL=$1
+		return
+	fi
+
+	stop
+	start
+}
+
+status() {
+	if [ ! -f /var/lock/subsys/uptimed ]; then
+		msg_not_running uptimed
+		RETVAL=3
+		return $RETVAL
+	fi
+
+	nls "uptimed is running"
+}
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload|force-reload)
+	stop
+	start
+	;;
+  try-restart)
+	condrestart 0
+	;;
+  status)
+	status
+	RETVAL=$?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|try-restart|reload|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL
